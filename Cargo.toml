@@ -36,7 +36,7 @@ graphql = { git = "https://github.com/edgeandnode/toolshed", tag = "v0.4.0", def
 headers = "0.4.0"
 hickory-resolver = "0.26.0"
 http = "1.1.0"
-indexer-selection = { git = "https://github.com/lodestar-team/candidate-selection", rev = "c0bc621a399cceaf2da025ae381e222c765eaf64" }
+indexer-selection = { git = "https://github.com/nightswatchhq/candidate-selection", rev = "c0bc621a399cceaf2da025ae381e222c765eaf64" }
 ipnetwork = { version = "0.21.0", default-features = false }
 itertools = "0.14.0"
 lazy_static = "1.4.0"

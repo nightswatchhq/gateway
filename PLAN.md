@@ -161,7 +161,7 @@ NOTE: a running gateway polls the network subgraph every 30s — burns the Studi
 ## Roadmap
 
 ### Phase 0 — Fork & build  ✅ (this session)
-- [x] Squashed-snapshot fork of `edgeandnode/gateway` v27.6.0 into `lodestar-team/gateway` (MIT retained).
+- [x] Squashed-snapshot fork of `edgeandnode/gateway` v27.6.0 into `nightswatchhq/gateway` (MIT retained).
 - [x] Builds on macOS via `dynamic-kafka` feature + Homebrew librdkafka; Linux/Docker static build untouched.
 - [x] Light rebrand (`lodestar-gateway` package/binary/CI image/log name).
 
@@ -215,7 +215,7 @@ Changes from upstream `edgeandnode/gateway` v27.6.0:
 - `Cargo.toml`: package renamed `graph-gateway` → `lodestar-gateway`; added opt-in `dynamic-kafka`
   feature (`rdkafka/dynamic-linking`) for macOS builds.
 - `Dockerfile`: binary name updated (still static vendored librdkafka build on Linux).
-- `.github/workflows/docker-image.yml`: image → `ghcr.io/lodestar-team/gateway`.
+- `.github/workflows/docker-image.yml`: image → `ghcr.io/nightswatchhq/gateway`.
 - `src/main.rs`: logging service name → `lodestar-gateway`.
 - `src/network/service.rs`: doc comment rename.
 - `README.md`: fork notice + macOS build instructions.

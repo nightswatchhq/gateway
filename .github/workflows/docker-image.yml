@@ -10,7 +10,7 @@ on:
     tags: ["v*"]
 
 env:
-  IMAGE: ghcr.io/lodestar-team/gateway
+  IMAGE: ghcr.io/nightswatchhq/gateway
 
 jobs:
   build:
