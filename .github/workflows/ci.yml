@@ -17,6 +17,9 @@ env:
   RUST_BACKTRACE: full
   RUSTFLAGS: "-C link-arg=-fuse-ld=lld -D warnings"
 
+  # The commands CI runs live in yatr.toml, so `yatr ci` locally is the
+  # same gate. Bump deliberately.
+  YATR_VERSION: "1.1.0"
 jobs:
   check_formatting:
     name: check formatting
@@ -30,7 +33,23 @@ jobs:
           toolchain: nightly
           components: rustfmt
 
-      - run: cargo +nightly fmt --all -- --check
+      - name: Cache yatr
+        id: cache-yatr
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/yatr
+          key: yatr-${{ runner.os }}-${{ env.YATR_VERSION }}
+
+      - name: Install yatr
+        if: steps.cache-yatr.outputs.cache-hit != 'true'
+        # RUSTFLAGS is cleared deliberately: yatr is a different crate and must
+        # not inherit this project's flags (a `-D warnings` or a custom linker
+        # would fail or mislink the install).
+        run: cargo install yatr --version ${{ env.YATR_VERSION }} --locked
+        env:
+          RUSTFLAGS: ""
+
+      - run: yatr fmt-check
 
   check_and_test:
     name: check and test
@@ -50,8 +69,24 @@ jobs:
       - name: prepare build env
         run: sudo apt-get install -y lld librdkafka-dev libsasl2-dev
 
-      - run: cargo check
-      - run: cargo clippy -- -Dwarnings --force-warn deprecated --force-warn dead-code
+      - name: Cache yatr
+        id: cache-yatr
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/yatr
+          key: yatr-${{ runner.os }}-${{ env.YATR_VERSION }}
+
+      - name: Install yatr
+        if: steps.cache-yatr.outputs.cache-hit != 'true'
+        # RUSTFLAGS is cleared deliberately: yatr is a different crate and must
+        # not inherit this project's flags (a `-D warnings` or a custom linker
+        # would fail or mislink the install).
+        run: cargo install yatr --version ${{ env.YATR_VERSION }} --locked
+        env:
+          RUSTFLAGS: ""
+
+      - run: yatr typecheck
+      - run: yatr lint
 
       - name: unit tests
-        run: cargo test
+        run: yatr test
