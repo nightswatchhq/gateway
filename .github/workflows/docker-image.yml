@@ -10,7 +10,7 @@ on:
     tags: ["v*"]
 
 env:
-  IMAGE: ghcr.io/nightswatchhq/gateway
+  IMAGE: ghcr.io/nuthatch-org/gateway
 
 jobs:
   build:
