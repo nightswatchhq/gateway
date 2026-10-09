@@ -1586,7 +1586,7 @@ dependencies = [
 [[package]]
 name = "candidate-selection"
 version = "0.1.0"
-source = "git+https://github.com/nightswatchhq/candidate-selection?rev=c0bc621a399cceaf2da025ae381e222c765eaf64#c0bc621a399cceaf2da025ae381e222c765eaf64"
+source = "git+https://github.com/nuthatch-org/candidate-selection?rev=c0bc621a399cceaf2da025ae381e222c765eaf64#c0bc621a399cceaf2da025ae381e222c765eaf64"
 dependencies = [
  "arrayvec",
  "ordered-float",
@@ -3092,7 +3092,7 @@ dependencies = [
 [[package]]
 name = "indexer-selection"
 version = "0.1.0"
-source = "git+https://github.com/nightswatchhq/candidate-selection?rev=c0bc621a399cceaf2da025ae381e222c765eaf64#c0bc621a399cceaf2da025ae381e222c765eaf64"
+source = "git+https://github.com/nuthatch-org/candidate-selection?rev=c0bc621a399cceaf2da025ae381e222c765eaf64#c0bc621a399cceaf2da025ae381e222c765eaf64"
 dependencies = [
  "candidate-selection",
  "permutation",
